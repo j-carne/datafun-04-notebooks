@@ -61,6 +61,7 @@ nav = [
     { "Home" = "index.md" },
     { "Project Instructions" = "project-instructions.md" },
     { "Your Files" = "your-files.md" },
+    { "Dynon Flight Data EDA" = "dynon-eda.md" },
     { "Glossary" = "glossary.md" },
-    { "Variables" = "module/variables.md" },
+    { "API" = "module/api.md" },
 ]
