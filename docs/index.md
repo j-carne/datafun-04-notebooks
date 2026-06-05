@@ -25,3 +25,61 @@ to get these projects running on your machine.
   - [RESOURCES.md](./module/RESOURCES.md)
   - [seaborn-datasets.md](./module/seaborn-datasets.md)
   - [TROUBLESHOOTING.md](./module/TROUBLESHOOTING.md)
+
+## Applied Project — Dynon Flight Data EDA (eda_jcarne_dynon.ipynb)
+
+This notebook applies the EDA workflow to real flight data exported from
+a Dynon avionics system. The analysis explores relationships between
+cylinder head temperatures (CHT) and indicated airspeed across a full flight.
+
+### Dataset
+
+- **File:** `data/raw/dynon_data.csv` (excluded from repo due to file size)
+- **Rows:** 14,133 total, 14,122 after cleaning (only 9 rows dropped)
+- **Columns analyzed:** CHT 1-4 (deg C), Indicated Airspeed (knots)
+- **Grouping variable:** GPS Fix Quality (0.0, 1.0, 2.0)
+
+### Key Findings
+
+| Columns | Correlation |
+|---------|-------------|
+| CHT 1 and CHT 2 | ~1.0 |
+| CHT 3 and CHT 4 | ~1.0 |
+| CHT 1 and Airspeed | ~0.80 |
+| CHT 2 and Airspeed | ~0.82 |
+| CHT 3 and Airspeed | ~0.70 |
+| CHT 4 and Airspeed | ~0.72 |
+
+All four cylinders heat and cool together, confirming balanced engine
+performance. CHT rises with airspeed as power demand increases, with
+front cylinders (1 and 2) showing a slightly stronger relationship
+than rear cylinders (3 and 4).
+
+GPS fix quality acts as a natural proxy for flight phase — no GPS lock
+corresponds to ground operations at lower and more variable temperatures,
+while GPS-locked data captures stable in-flight engine temperatures.
+
+### Visualizations
+
+![Correlation Heatmap](./docs/images/dynon_heatmap.png)
+
+![CHT 1 vs Indicated Airspeed](./docs/images/dynon_scatter.png)
+
+![CHT 1 Distribution by GPS Fix Quality](./docs/images/dynon_histogram.png)
+
+### Suggested Next Steps
+
+- Model CHT ~ Indicated Airspeed with linear regression (Module 7)
+- Investigate why front cylinders correlate more strongly with airspeed
+- Analyze EGT columns alongside CHT for a complete engine health picture
+- Compare multiple flights to identify trends over time
+
+### How to Run
+
+```shell
+uv run jupyter lab
+```
+
+Then open `notebooks/eda_jcarne_dynon.ipynb` and click **Run All**.
+The main additions were the Dynon project section at the bottom with the findings table, visualization placeholders, and next steps. I also added the dynon_data.csv note in the Notes section and the uv run jupyter lab command in the command reference.
+When you're ready, save screenshots of your three charts into docs/images/ and the image links will display them automatically.This chat has 93 of 100 images (including PDF pages). Consider starting a new chat.
