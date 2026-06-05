@@ -188,3 +188,13 @@ Remove unnecessary instructional comments in your final version of this README.m
 ![Provide a Useful Caption](./docs/images/Figure_2.png)
 
 ![Provide a Useful Caption](./docs/images/Figure_3.png)
+
+## Modification
+
+- Copied `eda_case.ipynb` and renamed it `eda_jcarne.ipynb`
+- Updated the notebook header with my name, repository link, and date
+- Added a new histogram chart (Chart 3) showing the distribution of
+  body mass by species using sns.histplot()
+- The histogram revealed that Gentoo penguins are clearly heavier than
+  Adelie and Chinstrap penguins, with very little overlap in their
+  body mass distributions
